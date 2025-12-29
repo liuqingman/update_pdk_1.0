@@ -1,6 +1,8 @@
 # bazel_configs
 merge_to_branch=$1
 pdk_sdk_version=$2
+sdk_url=${3}
+sdk_sha256=${4}
 
 rm -fr /data/liuc/bazel_configs
 cd /data/liuc/
