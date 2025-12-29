@@ -16,6 +16,6 @@ sed -i "s|\(xccp_sdk_urls = \[\)\"[^\"]*\"|\1\"${sdk_url}\"|" globals.bzl
 sed -i "s|\(xccp_sdk_sha256 = \"\)[^\"]*\"|\1${sdk_sha256}\"|" globals.bzl
 git add .
 git commit -m "update new sdk ${pdk_sdk_version}"
-git show HEAD
+git show HEAD > /tmp/bazel_config.txt
 git push --set-upstream origin update_${merge_to_branch}_${pdk_sdk_version} -f
 glab mr create --title "update pdk ${pdk_sdk_version}" --description "update pdk ${pdk_sdk_version}" --target-branch ${merge_to_branch} 2>&1 | grep "https" >> /tmp/update_pdk_sdk_mr.txt
