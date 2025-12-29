@@ -18,4 +18,7 @@ git add .
 git commit -m "update new sdk ${pdk_sdk_version}"
 git show HEAD
 git push --set-upstream origin update_${merge_to_branch}_${pdk_sdk_version} -f
-glab mr create --title "update pdk ${pdk_sdk_version}" --description "update pdk ${pdk_sdk_version}" --target-branch ${merge_to_branch} --json web_url | python -c 'import sys,json; print(json.load(sys.stdin)["web_url"])' | tee -a /tmp/update_pdk_mr.txt
+glab mr create --title "update pdk ${pdk_sdk_version}" --description "update pdk ${pdk_sdk_version}" --target-branch ${merge_to_branch} \
+| awk '{
+    for (i=1; i<=NF; i++) if ($i ~ /^https?:\/\//) {print $i; exit}
+}' | tee -a /tmp/update_pdk_mr.txt
