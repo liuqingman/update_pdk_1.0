@@ -18,4 +18,4 @@ git add .
 git commit -m "update new sdk ${pdk_sdk_version}"
 git show HEAD
 git push --set-upstream origin update_${merge_to_branch}_${pdk_sdk_version} -f
-glab mr create --title "update pdk ${pdk_sdk_version}" --description "update pdk ${pdk_sdk_version}" --target-branch ${merge_to_branch}
+glab mr create --title "update pdk ${pdk_sdk_version}" --description "update pdk ${pdk_sdk_version}" --target-branch ${merge_to_branch} --format "{{.WebURL}}" | tee -a /tmp/update_pdk_sdk_mr.txt
